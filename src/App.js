@@ -5,7 +5,7 @@ import "./App.css";
 import Loader from "./components/Loader";
 
 function App() {
-  const [{ ip, lat, long }] = useGetIP();
+  const [{ ip, lat, long, city = "your city" }] = useGetIP();
   const [robot, setRobot] = useState(null);
   const [map, setMap] = useState(null);
   const [isReady, setIsReady] = useState(false);
@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div className="App">
-      {isReady ? <Container robot={robot} map={map} /> : <Loader />}
+      {isReady ? <Container robot={robot} map={map} city={city} /> : <Loader />}
     </div>
   );
 }

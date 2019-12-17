@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
-import Robot from "../components/Robot";
-import Quotes from "../components/Quotes";
-import MapTile from "../components/MapTile";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Welcome from "./Welcome";
+import Main from "./Main";
 
-export default ({ map, robot }) => {
+export default ({ map, robot, city }) => {
   return (
-    <div>
-      <h1>Quote Bot</h1>
-      <Robot robot={robot} />
-      <Quotes />
-      <MapTile map={map} />
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/main">
+          <Main robot={robot} />
+        </Route>
+        <Route path="/">
+          <Welcome city={city} robot={robot} map={map} />
+        </Route>
+      </Switch>
+    </Router>
   );
 };
