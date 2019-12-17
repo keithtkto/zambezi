@@ -33,7 +33,7 @@ const initState = {
   isLoading: true
 };
 
-export default ({ ip }) => {
+export default ({}) => {
   const [showOverlay, setOverlay] = useState(false);
   const [{ history, currentQuote, isLoading }, dispatch] = useReducer(
     reducer,
