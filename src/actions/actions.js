@@ -48,7 +48,7 @@ export const getMapTile = async ({ lat, long }, cb) => {
 export const getTextToVoice = async (quote = "testing this", cb) => {
   const str = quote.split(" ").join("+");
   const response = await axios.get(
-    `http://api.voicerss.org/?key=45745a596f7249daa16b94dc7a1c5e2a&src=${str}&hl=en-us`,
+    `https://api.voicerss.org/?key=45745a596f7249daa16b94dc7a1c5e2a&src=${str}&hl=en-us`,
     {
       headers: { "Content-Type": "audio/wav" },
       responseType: "blob"
