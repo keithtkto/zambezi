@@ -1,14 +1,18 @@
 import React from "react";
+import Quote from "./Quote";
 
 export default ({ history }) => {
   return (
-    <ul>
-      {history.map(({ quote, author }, i) => (
-        <li key={i}>
-          <p>{quote}</p>
-          <span>{author}</span>
-        </li>
+    <div>
+      {history.map(({ quote, author, rating }, idx) => (
+        <Quote
+          key={`history-${idx}`}
+          quote={quote}
+          author={author}
+          idx={idx}
+          rating={rating}
+        />
       ))}
-    </ul>
+    </div>
   );
 };

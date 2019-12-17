@@ -1,9 +1,11 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { getQuote } from "../actions/actions";
 import Quote from "./Quote";
 import RateQuote from "./RateQuote";
 import Overlay from "./Overlay";
 import History from "./History";
+import Commands from "./Commands";
+import CloseBtn from "./CloseBtn";
 
 const reducer = (state, { type, payload }) => {
   switch (type) {
@@ -32,6 +34,7 @@ const initState = {
 };
 
 export default ({ ip }) => {
+  const [showOverlay, setOverlay] = useState(false);
   const [{ history, currentQuote, isLoading }, dispatch] = useReducer(
     reducer,
     initState
@@ -59,15 +62,20 @@ export default ({ ip }) => {
 
   return (
     <div>
-      <Quote length={history.length + 1} quote={quote} author={author} />
+      <Commands handleShowHistory={() => setOverlay(true)} />
+      <Quote idx={history.length} quote={quote} author={author} />
       <RateQuote handleRateQuote={handleRateQuote} />
-      <Overlay>
-        {history.length ? (
-          <History history={history} />
-        ) : (
-          <div>No past quote yet</div>
-        )}
-      </Overlay>
+      {showOverlay && (
+        <Overlay>
+          <CloseBtn handleClose={() => setOverlay(false)} />
+          <h2>Past Quotes</h2>
+          {history.length ? (
+            <History history={history} />
+          ) : (
+            <div>No past quote yet</div>
+          )}
+        </Overlay>
+      )}
       {/* <History history={history} /> */}
     </div>
   );
