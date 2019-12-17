@@ -20,7 +20,7 @@ const reducer = (state, { type, payload }) => {
         ...state,
         history: [...state.history, { ...state.currentQuote, rating: payload }],
         isLoading: true,
-        currentQuote: null
+        currentQuote: {}
       };
     default:
       return state;
@@ -29,7 +29,7 @@ const reducer = (state, { type, payload }) => {
 
 const initState = {
   history: [],
-  currentQuote: null,
+  currentQuote: {},
   isLoading: true
 };
 
@@ -54,17 +54,17 @@ export default ({}) => {
 
   console.log(history, currentQuote);
 
-  if (isLoading) {
-    return <div>Loading quotes</div>;
-  }
-
   const { quote, author } = currentQuote;
 
   return (
     <div>
       <Commands handleShowHistory={() => setOverlay(true)} />
-      <Quote idx={history.length} quote={quote} author={author} />
-      <RateQuote handleRateQuote={handleRateQuote} />
+      {isLoading ? (
+        <div className="skeleton" />
+      ) : (
+        <Quote idx={history.length} quote={quote} author={author} />
+      )}
+      {!isLoading && <RateQuote handleRateQuote={handleRateQuote} />}
       {showOverlay && (
         <Overlay>
           <CloseBtn handleClose={() => setOverlay(false)} />
