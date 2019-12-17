@@ -15,7 +15,7 @@ export default ({ map, robot, city }) => {
         the quote and I will fetch you a new one.
         <br />
         <br />
-        Click here to continue.
+        Click anywhere to continue.
       </p>
     </Link>
   );

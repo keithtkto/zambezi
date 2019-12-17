@@ -63,12 +63,10 @@ export default ({}) => {
     getNewQuote();
   };
 
-  console.log(history, currentQuote);
-
   const { quote, author } = currentQuote;
 
   return (
-    <div>
+    <div className="quotes">
       <audio controls src={voiceData} autoPlay={true} ref={audioRef}>
         Your browser does not support the
         <code>audio</code> element.
@@ -83,14 +81,17 @@ export default ({}) => {
       ) : (
         <Quote idx={history.length} quote={quote} author={author} />
       )}
-      {!isLoading && <RateQuote handleRateQuote={handleRateQuote} />}
+      {isLoading ? (
+        <div style={{ height: 442 }}></div>
+      ) : (
+        <RateQuote handleRateQuote={handleRateQuote} />
+      )}
       {showOverlay && (
         <Overlay>
           <CloseBtn handleClose={() => setOverlay(false)} />
           <History history={history} />
         </Overlay>
       )}
-      {/* <History history={history} /> */}
     </div>
   );
 };

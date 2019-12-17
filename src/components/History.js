@@ -1,9 +1,10 @@
 import React from "react";
 import Quote from "./Quote";
+import "../styles/history.css";
 
 export default ({ history }) => {
   return (
-    <div>
+    <div className="history">
       <h1>Past Quotes</h1>
       {history.length ? (
         history.map(({ quote, author, rating }, idx) => (

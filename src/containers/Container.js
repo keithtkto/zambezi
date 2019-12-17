@@ -8,7 +8,7 @@ export default ({ map, robot, city }) => {
     <Router>
       <Switch>
         <Route path="/main">
-          <Main robot={robot} />
+          <Main city={city} robot={robot} map={map} />
         </Route>
         <Route path="/">
           <Welcome city={city} robot={robot} map={map} />

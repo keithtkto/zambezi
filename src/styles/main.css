@@ -1,0 +1,27 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.only-desktop {
+  display: none;
+}
+
+.convo {
+  max-width: 300px;
+  text-align: left;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 16px 0;
+}
+
+@media only screen and (min-width: 800px) {
+  .main {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .only-desktop {
+    display: block;
+  }
+}
