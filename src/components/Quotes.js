@@ -2,6 +2,7 @@ import React, { useEffect, useReducer } from "react";
 import { getQuote } from "../actions/actions";
 import Quote from "./Quote";
 import RateQuote from "./RateQuote";
+import Overlay from "./Overlay";
 import History from "./History";
 
 const reducer = (state, { type, payload }) => {
@@ -58,10 +59,16 @@ export default ({ ip }) => {
 
   return (
     <div>
-      Quotes
-      <Quote quote={quote} author={author} />
+      <Quote length={history.length + 1} quote={quote} author={author} />
       <RateQuote handleRateQuote={handleRateQuote} />
-      <History history={history} />
+      <Overlay>
+        {history.length ? (
+          <History history={history} />
+        ) : (
+          <div>No past quote yet</div>
+        )}
+      </Overlay>
+      {/* <History history={history} /> */}
     </div>
   );
 };

@@ -1,10 +1,12 @@
 import React from "react";
+import "../styles/quotes.css";
 
-export default ({ quote, author }) => {
+export default ({ quote, author, length }) => {
   return (
-    <div>
+    <div className="quote">
+      <h2>Quote {length}</h2>
       <p>{quote}</p>
-      <span>{author}</span>
+      <span className="author">{author}</span>
     </div>
   );
 };

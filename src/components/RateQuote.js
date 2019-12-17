@@ -1,13 +1,22 @@
 import React from "react";
-
-const ratings = ["Lame", "Meh...", "Great!"];
+import "../styles/quotes.css";
+const ratings = [
+  { text: "Lame", color: "#ff6347" },
+  { text: "Meh...", color: "ffbf47" },
+  { text: "Great!", color: "#029619" }
+];
 
 export default ({ handleRateQuote }) => {
   return (
-    <div>
+    <div className="rate-btns">
       {ratings.map(r => (
-        <button key={r} onClick={() => handleRateQuote(r)}>
-          {r}
+        <button
+          className="rate-btn"
+          style={{ borderColor: r.color }}
+          key={r.text}
+          onClick={() => handleRateQuote(r)}
+        >
+          {r.text}
         </button>
       ))}
     </div>
