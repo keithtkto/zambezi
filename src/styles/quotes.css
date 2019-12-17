@@ -12,9 +12,14 @@
   border-radius: 4px;
 }
 
-.quote {
+.quote-wrapper {
   text-align: left;
   font-size: 18px;
+  margin: 40px 0;
+}
+
+.quote {
+  margin: 16px 0;
 }
 
 .author {
@@ -23,4 +28,8 @@
   font-size: 20px;
   font-style: italic;
   font-weight: 500;
+}
+
+.rating {
+  float: right;
 }

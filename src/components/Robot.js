@@ -1,5 +1,6 @@
 import React from "react";
+import "../styles/robot.css";
 
-export default ({ ip }) => (
-  <img src={`https://robohash.org/${ip}.png?bgset=bg1`} />
-);
+export default ({ robot }) => {
+  return <img className="robot" src={robot} />;
+};

@@ -1,6 +1,6 @@
 import React from "react";
 import { useGetIP } from "./actions/actions";
-import Container from "./components/Container";
+import Container from "./containers/Container";
 import "./App.css";
 
 function App() {
