@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useReducer } from "react";
-import { getQuote } from "../actions/actions";
+import React, { useState, useEffect, useReducer, useRef } from "react";
+import { getQuote, getTextToVoice } from "../actions/actions";
 import Quote from "./Quote";
 import RateQuote from "./RateQuote";
 import Overlay from "./Overlay";
@@ -34,18 +34,29 @@ const initState = {
 };
 
 export default ({}) => {
+  const audioRef = useRef(null);
+  const [voiceData, setVoiceData] = useState(null);
   const [showOverlay, setOverlay] = useState(false);
   const [{ history, currentQuote, isLoading }, dispatch] = useReducer(
     reducer,
     initState
   );
-
-  const getNewQuote = () =>
-    getQuote(payload => dispatch({ type: "new-quote", payload }));
-
   useEffect(() => {
     getNewQuote();
   }, []);
+
+  const getNewQuote = () => {
+    getQuote(payload => dispatch({ type: "new-quote", payload }));
+    setVoiceData(null);
+  };
+
+  const handleGetVoiceData = quote => {
+    if (voiceData) {
+      audioRef.current.play();
+    } else {
+      getTextToVoice(quote, setVoiceData);
+    }
+  };
 
   const handleRateQuote = input => {
     dispatch({ type: "rate-quote", payload: input });
@@ -58,7 +69,15 @@ export default ({}) => {
 
   return (
     <div>
-      <Commands handleShowHistory={() => setOverlay(true)} />
+      <audio controls src={voiceData} autoPlay={true} ref={audioRef}>
+        Your browser does not support the
+        <code>audio</code> element.
+      </audio>
+      <Commands
+        handleShowHistory={() => setOverlay(true)}
+        handleGetVoiceData={() => handleGetVoiceData(quote)}
+        hasQuote={quote}
+      />
       {isLoading ? (
         <div className="skeleton" />
       ) : (
