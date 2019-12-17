@@ -87,12 +87,7 @@ export default ({}) => {
       {showOverlay && (
         <Overlay>
           <CloseBtn handleClose={() => setOverlay(false)} />
-          <h2>Past Quotes</h2>
-          {history.length ? (
-            <History history={history} />
-          ) : (
-            <div>No past quote yet</div>
-          )}
+          <History history={history} />
         </Overlay>
       )}
       {/* <History history={history} /> */}
