@@ -173,3 +173,7 @@ a {
 audio {
   display: none;
 }
+
+button {
+  cursor: pointer;
+}
