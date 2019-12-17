@@ -3,7 +3,7 @@ import "../styles/common.css";
 
 export default () => (
   <div className="loader">
-    <div class="lds-ripple">
+    <div className="lds-ripple">
       <div></div>
       <div></div>
     </div>
